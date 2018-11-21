@@ -19,12 +19,12 @@ class Offer extends React.Component {
 						content={this.state.offer.description}
 						text={this.state.offer.title}
 						price={this.state.offer.price}
-					/>
+					/>{" "}
 					<LetMeExplain
 						url={""}
 						text={this.state.offer.creator.account.username}
 						price={this.state.offer.creator.account.email}
-					/>
+					/>{" "}
 				</div>
 			);
 		}
@@ -49,7 +49,7 @@ class Offer extends React.Component {
 	}
 
 	render() {
-		return <div>{this.renderItem()}</div>;
+		return <div> {this.renderItem()} </div>;
 	}
 }
 
