@@ -1,0 +1,21 @@
+.letMe {
+  display: flex;
+  width: 80%;
+  margin: 30px auto;
+  height: 120px;
+  align-items: center;
+
+}
+
+.letMe img {
+  flex: 1;
+  height: 76%;
+}
+
+.letMe p {
+  flex: 3;
+  text-align: left;
+  padding-left: 8px;
+  color: var(--light-color);
+  margin-top: 0px;
+}
