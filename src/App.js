@@ -5,7 +5,7 @@ import "./App.css";
 import Home from "./containers/Home";
 import SignUp from "./containers/SignUp";
 import LogIn from "./containers/LogIn";
-import Profile from "./containers/Profile";
+import Offer from "./containers/Offer";
 import Publish from "./containers/Publish";
 import Header from "./components/Header";
 import "./App.css";
@@ -65,9 +65,13 @@ class App extends Component {
 								<LogIn {...props} user={user} logIn={this.logIn} />
 							)}
 						/>
-						<Route
+						{/* <Route
 							path="/profile/:id"
 							render={props => <Profile {...props} user={user} />}
+						/> */}
+						<Route
+							path="/offer/:id"
+							render={props => <Offer {...props} user={user} />}
 						/>
 						<Route
 							path="/publish"

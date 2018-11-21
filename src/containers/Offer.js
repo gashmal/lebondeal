@@ -3,7 +3,7 @@ import LetMeExplain from "../components/LetMeExplain";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-class Profile extends React.Component {
+class Offer extends React.Component {
 	state = {
 		offer: {}
 	};
@@ -53,4 +53,4 @@ class Profile extends React.Component {
 	}
 }
 
-export default Profile;
+export default Offer;

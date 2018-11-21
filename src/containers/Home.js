@@ -27,7 +27,7 @@ class Home extends React.Component {
 		return (
 			<div>
 				{this.state.offers.reverse().map(annonce => (
-					<Link key={annonce._id} to={"/profile/" + annonce._id}>
+					<Link key={annonce._id} to={"/offer/" + annonce._id}>
 						<LetMeExplain text={annonce.title} price={annonce.price} />
 					</Link>
 				))}
