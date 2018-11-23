@@ -9,9 +9,9 @@ export default class SearchBar extends Component {
 		title: "",
 		priceMin: "",
 		priceMax: "",
-		sort: "", // "price-desc", "price-asc", "date-desc", "date-asc"
+		sort: "date-desc", // "price-desc", "price-asc", "date-desc", "date-asc"
 		skip: 0,
-		limit: 5
+		limit: 25
 	};
 
 	handleChange = event => {
@@ -29,7 +29,7 @@ export default class SearchBar extends Component {
 							priceMin: this.state.priceMin,
 							priceMax: this.state.priceMax,
 							sort: this.state.sort,
-							skip: this.state.skip,
+							skip: 0,
 							limit: this.state.limit
 						}
 					})
@@ -107,7 +107,7 @@ export default class SearchBar extends Component {
 						onClick={() => {
 							this.setState(
 								{
-									skip: this.state.skip + 5
+									skip: this.state.skip + 25
 								},
 								() => {
 									axios
@@ -143,7 +143,7 @@ export default class SearchBar extends Component {
 							if (this.state.skip >= 5) {
 								this.setState(
 									{
-										skip: this.state.skip - 5
+										skip: this.state.skip - 25
 									},
 									() => {
 										axios

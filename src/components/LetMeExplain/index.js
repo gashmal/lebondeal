@@ -2,20 +2,26 @@ import React, { PureComponent } from "react";
 import "./styles.css";
 
 export default class LetMeExplain extends PureComponent {
-	render() {
-		console.log(this.props.url);
-		let pic = "";
+	renderImages() {
 		if (this.props.url && this.props.url[0]) {
-			pic = this.props.url[0].secure_url;
-		}
+			return <img src={this.props.url[0].secure_url} alt="" />;
+		} else
+			return (
+				<img
+					src="https://www.arrowsmithstation.co.nz/wp-content/uploads/2014/03/deal.png"
+					alt=""
+				/>
+			);
+	}
 
+	render() {
 		return (
 			<div className="letMe">
-				<img src={pic} alt="" />
-
+				{this.renderImages()}
 				<p>{this.props.text}</p>
 				<p>{this.props.content}</p>
 				<p>{this.props.price}</p>
+				<p>{this.props.date}</p>
 			</div>
 		);
 	}

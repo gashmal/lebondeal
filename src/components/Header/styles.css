@@ -3,7 +3,7 @@ header {
   height: 60px;
   display: flex;
   align-items: center;
-  
+
 }
 
 header>div {
@@ -20,14 +20,14 @@ header>div .logo {
 }
 
 header>div .logo>a>img {
-  height: 40px;
+  height: 30px;
   padding-left: 10px;
 }
 
 header>div .menu {
   flex: 1;
   display: flex;
-  
+
   align-items: center;
   justify-content: space-between;
   font-size: 12px;
@@ -61,3 +61,89 @@ header .menu-right li:last-of-type {
   padding-right: 10px;
 }
 
+.notWide {
+  display: none;
+}
+
+.h1 {
+  display: none;
+}
+
+.notVisible {
+  display: none;
+}
+
+.visible {
+  display: flex;
+}
+
+
+@media (max-width: 600px) {
+  header>div .menu {
+
+    display: none;
+
+
+  }
+
+  .notWide {
+    display: block;
+    width: 50px;
+
+    color: white;
+
+  }
+
+  .h1 {
+    display: initial;
+    font-size: 10px;
+    text-align: center;
+    color: white;
+    flex: 1;
+  }
+
+  .iconMenu {
+    font-size: 30px;
+    padding-right: 10px;
+    float: right;
+
+  }
+
+  header>div .logo {
+    padding-right: 0px;
+
+    width: 50px;
+  }
+
+  #lilMenu {
+
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-color);
+  }
+
+  #lilMenu ul {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+    height: calc(100vh - 60px);
+    width: 100%;
+  }
+
+  #lilMenu li {
+    flex: 1;
+    border-bottom: 1px solid;
+    width: 100%;
+    text-align: center;
+    color: var(--dark-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #lilMenu li:first-child {
+    margin: auto;
+
+  }
+}

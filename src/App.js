@@ -8,7 +8,10 @@ import LogIn from "./containers/LogIn";
 import Offer from "./containers/Offer";
 import Publish from "./containers/Publish";
 import Header from "./components/Header";
+import Profile from "./containers/Profile";
 import "./App.css";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class App extends Component {
 	state = {
@@ -65,10 +68,10 @@ class App extends Component {
 								<LogIn {...props} user={user} logIn={this.logIn} />
 							)}
 						/>
-						{/* <Route
+						<Route
 							path="/profile/:id"
 							render={props => <Profile {...props} user={user} />}
-						/> */}
+						/>
 						<Route
 							path="/offer/:id"
 							render={props => <Offer {...props} user={user} />}

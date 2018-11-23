@@ -19,6 +19,7 @@ class Offer extends React.Component {
 						content={this.state.offer.description}
 						text={this.state.offer.title}
 						price={this.state.offer.price}
+						date={this.state.offer.created}
 					/>{" "}
 					<LetMeExplain
 						url={""}

@@ -1,21 +1,25 @@
 .letMe {
   display: flex;
-  width: 80%;
-  margin: 30px auto;
-  height: 120px;
+  flex-direction: column;
+  width: 250px;
+  height: 320px;
   align-items: center;
-
+  background-color: white;
+  border-radius: 30px;
+  overflow: hidden;
 }
 
 .letMe img {
-  flex: 1;
-  height: 76%;
+  height: 230px;
+  width: 100%;
+  object-fit: cover;
+  background-color: grey;
 }
 
 .letMe p {
   flex: 3;
   text-align: left;
   padding-left: 8px;
-  color: var(--light-color);
+  color: var(--dark-color);
   margin-top: 0px;
 }

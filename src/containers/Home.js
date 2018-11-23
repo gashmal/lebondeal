@@ -17,7 +17,7 @@ class Home extends React.Component {
 	componentDidMount() {
 		axios
 			.get(
-				"https://leboncoin-api.herokuapp.com/api/offer/with-count?skip=0&limit=5"
+				"https://leboncoin-api.herokuapp.com/api/offer/with-count?skip=0&limit=25&sort=date-desc"
 			)
 			.then(response => {
 				console.log(response.data);
@@ -36,15 +36,17 @@ class Home extends React.Component {
 		return (
 			<div>
 				<SearchBar fn={this.searchFn} count={this.state.counter} />
-				{this.state.offers.map(annonce => (
-					<Link key={annonce._id} to={"/offer/" + annonce._id}>
-						<LetMeExplain
-							url={annonce.pictures}
-							text={annonce.title}
-							price={annonce.price}
-						/>
-					</Link>
-				))}
+				<div className="offersContainer">
+					{this.state.offers.map(annonce => (
+						<Link key={annonce._id} to={"/offer/" + annonce._id}>
+							<LetMeExplain
+								url={annonce.pictures}
+								text={annonce.title}
+								price={annonce.price}
+							/>
+						</Link>
+					))}
+				</div>
 			</div>
 		);
 	}
