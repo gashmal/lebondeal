@@ -6,21 +6,25 @@ import SearchBar from "../components/SearchBar";
 
 class Home extends React.Component {
 	state = {
-		offers: []
+		offers: [],
+		counter: ""
 	};
 
-	searchFn = params => {
-		this.setState({ offers: params });
+	searchFn = (params, num) => {
+		this.setState({ offers: params, counter: num });
 	};
 
 	componentDidMount() {
 		axios
-			.get("https://leboncoin-api.herokuapp.com/api/offer")
+			.get(
+				"https://leboncoin-api.herokuapp.com/api/offer/with-count?skip=0&limit=5"
+			)
 			.then(response => {
 				console.log(response.data);
 
 				this.setState({
-					offers: response.data
+					offers: response.data.offers,
+					counter: response.data.count
 				});
 			})
 			.catch(err => {
@@ -31,10 +35,14 @@ class Home extends React.Component {
 	render() {
 		return (
 			<div>
-				<SearchBar fn={this.searchFn} />
+				<SearchBar fn={this.searchFn} count={this.state.counter} />
 				{this.state.offers.map(annonce => (
 					<Link key={annonce._id} to={"/offer/" + annonce._id}>
-						<LetMeExplain text={annonce.title} price={annonce.price} />
+						<LetMeExplain
+							url={annonce.pictures}
+							text={annonce.title}
+							price={annonce.price}
+						/>
 					</Link>
 				))}
 			</div>

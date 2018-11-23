@@ -15,7 +15,7 @@ class Offer extends React.Component {
 			return (
 				<div>
 					<LetMeExplain
-						url={""}
+						url={this.state.offer.pictures}
 						content={this.state.offer.description}
 						text={this.state.offer.title}
 						price={this.state.offer.price}

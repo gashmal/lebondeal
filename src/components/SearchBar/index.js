@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./styles.css";
 import FormFields from "../FormFields";
+import debounce from "lodash.debounce";
 
 export default class SearchBar extends Component {
 	state = {
@@ -22,7 +23,7 @@ export default class SearchBar extends Component {
 			},
 			() => {
 				axios
-					.get("https://leboncoin-api.herokuapp.com/api/offer", {
+					.get("https://leboncoin-api.herokuapp.com/api/offer/with-count", {
 						params: {
 							title: this.state.title,
 							priceMin: this.state.priceMin,
@@ -33,7 +34,7 @@ export default class SearchBar extends Component {
 						}
 					})
 					.then(response => {
-						this.props.fn(response.data);
+						this.props.fn(response.data.offers);
 					})
 					.catch(err => {
 						console.log(err);
@@ -46,7 +47,7 @@ export default class SearchBar extends Component {
 		const { title, priceMin, priceMax, sort, skip, limit } = this.state;
 		event.preventDefault();
 		axios
-			.get("https://leboncoin-api.herokuapp.com/api/offer", {
+			.get("https://leboncoin-api.herokuapp.com/api/offer/with-count", {
 				params: {
 					title: title,
 					priceMin: priceMin,
@@ -57,7 +58,7 @@ export default class SearchBar extends Component {
 				}
 			})
 			.then(response => {
-				this.props.fn(response.data);
+				this.props.fn(response.data.offers);
 			})
 			.catch(err => {
 				console.log(err);
@@ -110,18 +111,21 @@ export default class SearchBar extends Component {
 								},
 								() => {
 									axios
-										.get("https://leboncoin-api.herokuapp.com/api/offer", {
-											params: {
-												title: this.state.title,
-												priceMin: this.state.priceMin,
-												priceMax: this.state.priceMax,
-												sort: this.state.sort,
-												skip: this.state.skip,
-												limit: this.state.limit
+										.get(
+											"https://leboncoin-api.herokuapp.com/api/offer/with-count",
+											{
+												params: {
+													title: this.state.title,
+													priceMin: this.state.priceMin,
+													priceMax: this.state.priceMax,
+													sort: this.state.sort,
+													skip: this.state.skip,
+													limit: this.state.limit
+												}
 											}
-										})
+										)
 										.then(response => {
-											this.props.fn(response.data);
+											this.props.fn(response.data.offers);
 										})
 										.catch(err => {
 											console.log(err);
@@ -132,6 +136,7 @@ export default class SearchBar extends Component {
 					>
 						suivante
 					</button>
+					<span>1</span>
 					<button
 						className=""
 						onClick={() => {
@@ -142,18 +147,21 @@ export default class SearchBar extends Component {
 									},
 									() => {
 										axios
-											.get("https://leboncoin-api.herokuapp.com/api/offer", {
-												params: {
-													title: this.state.title,
-													priceMin: this.state.priceMin,
-													priceMax: this.state.priceMax,
-													sort: this.state.sort,
-													skip: this.state.skip,
-													limit: this.state.limit
+											.get(
+												"https://leboncoin-api.herokuapp.com/api/offer/with-count",
+												{
+													params: {
+														title: this.state.title,
+														priceMin: this.state.priceMin,
+														priceMax: this.state.priceMax,
+														sort: this.state.sort,
+														skip: this.state.skip,
+														limit: this.state.limit
+													}
 												}
-											})
+											)
 											.then(response => {
-												this.props.fn(response.data);
+												this.props.fn(response.data.offers);
 											})
 											.catch(err => {
 												console.log(err);
@@ -163,7 +171,7 @@ export default class SearchBar extends Component {
 							}
 						}}
 					>
-						precedante
+						Précédente
 					</button>
 					<button type="submit">Lancer la recherche</button>
 				</form>

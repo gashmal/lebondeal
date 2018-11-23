@@ -1,13 +1,23 @@
 import React, { Component } from "react";
 import FormFields from "../components/FormFields";
 import axios from "axios";
+import ReactFileReader from "react-file-reader";
 import Title from "../components/Title";
 
 class Publish extends Component {
 	state = {
 		title: "",
 		content: "",
-		price: ""
+		price: "",
+		files: []
+	};
+
+	handleFiles = files => {
+		console.log(files);
+		const newFiles = [...this.state.files, ...files.base64];
+		this.setState({
+			files: newFiles
+		});
 	};
 
 	handleChange = event => {
@@ -31,6 +41,7 @@ class Publish extends Component {
 					{
 						title: this.state.title,
 						description: this.state.content,
+						files: this.state.files,
 						price: this.state.price
 					},
 					{
@@ -61,6 +72,25 @@ class Publish extends Component {
 	};
 
 	render() {
+		const filesArray = [];
+		for (let i = 0; i < this.state.files.length; i++) {
+			filesArray.push(
+				<img
+					key={i}
+					onClick={() => {
+						// En cliquant sur l'image, le fichier sera supprimé
+						const newFiles = [...this.state.files];
+						newFiles.splice(i, 1);
+						this.setState({ files: newFiles });
+					}}
+					src={this.state.files[i]}
+					alt="Annonce"
+					height="100px"
+					width="auto"
+				/>
+			);
+		}
+
 		return (
 			<div>
 				<h1>Publier une annonce</h1>
@@ -87,6 +117,18 @@ class Publish extends Component {
 							onChange={this.handleChange}
 							value={this.state.price}
 						/>
+						<div>
+							<ReactFileReader
+								fileTypes={[".png", ".jpg"]}
+								base64={true}
+								multipleFiles={true} // `false si une seule image`
+								handleFiles={this.handleFiles}
+							>
+								<span>Choisir des images</span>
+							</ReactFileReader>
+
+							{filesArray}
+						</div>
 						<button type="submit"> Valider </button>
 					</form>
 				</div>
